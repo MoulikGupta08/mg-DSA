@@ -1,5 +1,5 @@
 # mg-DSA
 
-Yooooooo
+My DSA learning Journey..
 
 Author - Moulik 
