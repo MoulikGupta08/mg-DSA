@@ -31,6 +31,20 @@ class DoubleLinkedList
             length = 1;
         }
 
+        void append(int value){
+            Node* newNode = new Node(value);
+            if(length == 0){
+                head = newNode; 
+                tail = newNode;
+            }
+            else{
+                tail->next = newNode;
+                newNode->prev = tail;
+                tail = newNode;
+            }
+            length++;
+        }
+
         void printDetails(){
             cout<<"Head : "<<head->value<<endl;
             cout<<"Tail : "<<tail->value<<endl;
@@ -43,4 +57,18 @@ class DoubleLinkedList
                 temp = head;
             }
         }
+};
+
+int main()
+{
+    DoubleLinkedList* myDll = new DoubleLinkedList(0);
+
+    myDll->append(1);
+    myDll->append(2);
+    myDll->append(3);
+    myDll->append(4);
+
+    myDll->printDetails();
+
+    return 0;
 }
