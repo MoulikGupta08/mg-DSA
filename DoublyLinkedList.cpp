@@ -62,6 +62,37 @@ class DoubleLinkedList
             length--;
         }
 
+        void prepend(int value){
+            Node* newNode = new Node(value);
+            if(length == 0){
+                head = newNode;
+                tail = newNode;
+            }
+            else{
+                newNode->next = head;
+                head->prev = newNode;
+                head = newNode;
+            }
+            length++;
+        }
+
+        void deleteFirst(){
+            if(length == 0){
+                return;
+            }
+            if(length == 1){
+                head = nullptr;
+                tail = nullptr;
+            }
+            else{
+                Node* temp = head;
+                head = head->next;
+                delete temp;
+                head->prev = nullptr;
+            }
+            length--;
+        }
+
         void printDetails(){
             cout<<"Head : "<<head->value<<endl;
             cout<<"Tail : "<<tail->value<<endl;
@@ -84,9 +115,11 @@ int main()
     myDll->append(2);
     myDll->append(3);
     myDll->append(4);
+    myDll->prepend(-1);
 
     myDll->deleteLast();
-    
+    myDll->deleteFirst();
+
     myDll->printDetails();
 
     return 0;
