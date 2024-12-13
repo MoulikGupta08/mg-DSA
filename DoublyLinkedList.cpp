@@ -147,6 +147,29 @@ class DoubleLinkedList
             return true;
         }
 
+        void deleteNode(int index){
+            if(index<0 || index>length){
+                return;
+            }
+            if(index == 0){
+                return deleteFirst();
+            }
+            if(index == length){
+                return deleteLast();
+            }
+            else{
+                Node* temp = get(index);
+                Node* before = get(index-1);
+                Node* after = get(index+1);
+                before->next = after;
+                after->prev = before;
+                temp->next = nullptr;
+                temp->prev = nullptr;
+                delete temp;
+                length--;
+            }
+        }
+
         void printDetails(){
             cout<<"Head : "<<head->value<<endl;
             cout<<"Tail : "<<tail->value<<endl;
@@ -167,9 +190,10 @@ int main()
 
     myDll->append(1);
     myDll->append(2);
+    myDll->append(3);
     myDll->append(4);
-    myDll->append(5);
-    
+
+    myDll->deleteNode(0);
 
     myDll->printDetails();
 
