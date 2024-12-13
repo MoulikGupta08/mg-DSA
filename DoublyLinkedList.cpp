@@ -112,6 +112,41 @@ class DoubleLinkedList
             return temp;
         }
 
+        bool set(int index, int value){
+            Node* temp = get(index);
+            if(temp){
+                temp->value = value;
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        bool insertNode(int index, int value){
+            if(index<0 || index  >length){
+                return false;
+            } 
+            if(index == 0){
+                prepend(value);
+                return true;
+            }
+            if(index == length){
+                append(value);
+                return true;
+            }
+            
+            Node* newNode = new Node(value);
+            Node* temp = get(index);
+            Node* pre = get(index-1); 
+            newNode->next = temp;
+            temp->prev = newNode;
+            pre->next = newNode;
+            newNode->prev = pre;
+            length++;
+            return true;
+        }
+
         void printDetails(){
             cout<<"Head : "<<head->value<<endl;
             cout<<"Tail : "<<tail->value<<endl;
@@ -132,11 +167,9 @@ int main()
 
     myDll->append(1);
     myDll->append(2);
-    myDll->append(3);
     myDll->append(4);
-    myDll->prepend(-1);
-
-    cout<<"Get Value is : "<<myDll->get(5)->value<<endl;
+    myDll->append(5);
+    
 
     myDll->printDetails();
 
