@@ -68,10 +68,8 @@ int main()
     myStack->push(3);
     myStack->push(4);
     
-
     myStack->pop();
-    myStack->pop();
-    myStack->pop();
+    
 
     myStack->printDetails();
 
